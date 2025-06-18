@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Curso de Primeros Auxilios Comunitarios</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #990000;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .progress-bar {
+      height: 25px;
+      background-color: #e0e0e0;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      text-align: center;
+      color: white;
+      line-height: 25px;
+      transition: width 0.3s ease-in-out, background-color 0.3s;
+    }
+
+    .module {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .module button {
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .module button:disabled {
+      background-color: #95a5a6;
+      cursor: not-allowed;
+    }
+
+    #contentSection {
+      display: none;
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    #contentSection h2 {
+      color: #34495e;
+    }
+
+    #contentSection button {
+      margin-top: 20px;
+      background-color: #2ecc71;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+
+    iframe {
+      margin-top: 15px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Curso de Primeros Auxilios Comunitarios</h1>
+    <p style="text-align: center; color: #555;">Aprende cómo actuar ante emergencias comunes en tu comunidad.</p>
+
+    <div class="progress-bar">
+      <div class="progress-bar-fill" id="progressFill">0%</div>
+    </div>
+
+    <div id="modulesContainer"></div>
+
+    <div id="contentSection">
+      <h2 id="moduleTitle"></h2>
+      <div id="moduleContent"></div>
+      <button id="completeBtn">Marcar como Completado</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="Sitio Web Personal.html">
+        <button style="background-color: #e74c3c; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+          ← Volver a la página principal
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const modules = [
+      {
+        id: 1,
+        title: 'Introducción a los Primeros Auxilios',
+        content: '<p>Los primeros auxilios son las acciones inmediatas que se brindan a una persona herida o enferma antes de la llegada de personal médico.</p>',
+        pdf: 'Introduccion.pdf',
+        completed: false
+      },
+      
+      {
+        id: 3,
+        title: 'Hemorragias y Heridas',
+        content: '<p>Aprende a controlar hemorragias, aplicar presión directa y vendar adecuadamente una herida.</p>',
+        pdf: 'Hemorragias.pdf',
+        completed: false
+      },
+      
+    ];
+
+    let currentModuleIndex = null;
+
+    function renderModules() {
+      const container = document.getElementById('modulesContainer');
+      container.innerHTML = '';
+
+      modules.forEach((mod, index) => {
+        const moduleDiv = document.createElement('div');
+        moduleDiv.className = 'module';
+
+        const title = document.createElement('span');
+        title.textContent = mod.title;
+
+        const button = document.createElement('button');
+        button.textContent = mod.completed ? 'Completado' : 'Iniciar';
+        button.disabled = mod.completed;
+        button.addEventListener('click', () => showModule(index));
+
+        moduleDiv.appendChild(title);
+        moduleDiv.appendChild(button);
+        container.appendChild(moduleDiv);
+      });
+
+      updateProgress();
+    }
+
+    function showModule(index) {
+      currentModuleIndex = index;
+      const mod = modules[index];
+
+      document.getElementById('moduleTitle').textContent = mod.title;
+
+      let htmlContent = mod.content;
+
+      if (mod.pdf) {
+        htmlContent += `
+          <iframe src="${mod.pdf}" width="100%" height="500px"></iframe>
+          <p style="margin-top:10px;">
+            <a href="${mod.pdf}" target="_blank" download>
+              <button style="background-color:#3498db;">Descargar PDF del Módulo</button>
+            </a>
+          </p>
+        `;
+      }
+
+      document.getElementById('moduleContent').innerHTML = htmlContent;
+      document.getElementById('completeBtn').disabled = mod.completed;
+      document.getElementById('contentSection').style.display = 'block';
+    }
+
+    function completeCurrentModule() {
+      if (currentModuleIndex !== null) {
+        modules[currentModuleIndex].completed = true;
+        document.getElementById('contentSection').style.display = 'none';
+        renderModules();
+      }
+    }
+
+    function updateProgress() {
+      const total = modules.length;
+      const completed = modules.filter(m => m.completed).length;
+      const percent = Math.round((completed / total) * 100);
+
+      const fill = document.getElementById('progressFill');
+      fill.style.width = percent + '%';
+      fill.textContent = percent + '%';
+
+      if (percent < 40) {
+        fill.style.backgroundColor = '#e74c3c';
+      } else if (percent < 80) {
+        fill.style.backgroundColor = '#f1c40f';
+      } else {
+        fill.style.backgroundColor = '#2ecc71';
+      }
+    }
+
+    document.getElementById('completeBtn').addEventListener('click', completeCurrentModule);
+    renderModules();
+  </script>
+</body>
+</html>

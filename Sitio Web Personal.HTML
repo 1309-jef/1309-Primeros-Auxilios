@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primeros Auxilios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* General */
+    
+body {
+  background: linear-gradient(to right, #FF7F7F, #FF0000);
+  font-family: 'Raleway', sans-serif;
+  margin: 0;
+  padding: 0;
+  border: 10px solid #990000; 
+  box-sizing: border-box;      
+}
+
+    h1 {
+      color: black;
+      font-size: 42px;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-top: -10px;
+    }
+
+    /* Encabezado */
+    .square-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+      background-color: #FFFFFF;
+
+
+    }
+
+    .header-content {
+      text-align: center;
+    }
+
+    .header-content h1 {
+      color: black;
+      font-size: 48px;
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+    }
+
+    .header-content p {
+      font-size: 22px;
+      font-weight: bold;
+      color: black;
+      margin: 5px 0 0;
+    }
+
+    .logo-square {
+      width: 200px;
+      transition: transform 0.4s ease, opacity 0.4s;
+    }
+
+    .logo-square:hover {
+      transform: scale(1.1) rotate(10deg);
+      opacity: 0.9;
+    }
+
+    .logo-left {
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .logo-right {
+      animation: slideInRight 1s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Botones principales */
+    .contenedor-botones {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 80px;
+      margin: 60px auto;
+      flex-wrap: wrap;
+    }
+
+    .boton {
+      width: 250px;
+      height: 50px;
+      
+      background-size: cover;
+      background-position: center;
+      border: none;
+      border-radius: 10px;
+      color: Black;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .boton:hover {
+      filter: brightness(80%);
+      color: red;
+    }
+    .imagenes-informativas {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  padding: 10px;
+}
+
+.imagenes-informativas img {
+  width: 250px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.imagenes-informativas img:hover {
+  transform: scale(1.05);
+}
+.imagenes-informativas2 {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  padding: 10px;
+}
+.imagenes-informativas2 img {
+  width: 300px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.imagenes-informativas2 img:hover {
+  transform: scale(1.05);
+}
+    /* Selector de cursos */
+    .selector-container {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: transform 0.3s ease;
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      color: black;
+    }
+
+    .selector-container:hover {
+      transform: scale(1.02);
+    }
+
+    .selector-container h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .selector-container select,
+    .selector-container button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #FF0000;
+      background-color: #f9f9f9;
+      cursor: pointer;
+      max-width: 200px;
+    }
+
+    .selector-container button {
+      background-color: #FF0000;
+      color: white;
+      max-width: 150px;
+      border: none;
+    }
+
+    .selector-container button:hover {
+      background-color: #cc0000;
+    }
+
+    .selector-container select:hover {
+      border-color: #cc0000;
+    }
+
+.video-container {
+  width: 700px;
+  height: auto;
+  margin: 30px auto;
+  border: 10px solid white;
+  padding: 10px;
+  background-color: #990000;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: contain;
+  display: block;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px; /* Espacio entre las tarjetas */
+  flex-wrap: wrap; /* Permite que las tarjetas se ajusten si la pantalla es más pequeña */
+  padding: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  color: #333;
+  width: 30%; /* Ajusta el ancho para que entren tres en la fila */
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: #c0392b;
+  text-align: center;
+}
+
+.card img {
+  width: 80%;
+  height: auto;
+  margin: 20px auto 0 auto;
+  display: block;
+  border-radius: 8px;
+}
+
+
+    /* Redes Sociales */
+    .social-icons {
+      position: fixed;
+      right: 20px;
+      bottom: 50px;
+      z-index: 1000;
+    }
+
+    .social-icons a {
+      display: block;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 24px;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .whatsapp { background-color: #25D366; }
+    .facebook { background-color: #1877F2; }
+    .instagram { background-color: #E4405F; }
+    .tiktok { background-color: #000000; }
+
+    .social-icons a:hover {
+      transform: scale(1.5);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Encabezado -->
+  <div class="square-header">
+    <img src="logo1.png" alt="Logo izquierdo" class="logo-square logo-left">
+    <div class="header-content">
+      <h1>Primeros Auxilios</h1>
+      <p>¡Una oportunidad para salvar vidas!</p>
+    </div>
+    <img src="logo1.png" alt="Logo derecho" class="logo-square logo-right">
+  </div>
+
+  <!-- Botones -->
+  <div class="contenedor-botones">
+    <a href="que-son.html"><button class="boton">¿Qué son?</button></a>
+    <a href="para que se utilizan.html"><button class="boton">¿Para qué se utilizan?</button></a>
+    <a href="importancia.html"><button class="boton">Importancia</button></a>
+  </div>
+  
+<!-- Imágenes informativas -->
+<div class="imagenes-informativas">
+  <img src="img1.jpeg" alt="Imagen 1">
+  <img src="img2.jpeg" alt="Imagen 2">
+  <img src="img3.jpeg" alt="Imagen 3">
+</div>
+
+  <!-- Selector de cursos -->
+  <div class="selector-container">
+    <h1>Selecciona un curso:</h1>
+    <select id="curso">
+      <option value="">Seleccione un curso</option>
+      <option value="pac.html">PAC</option>
+      <option value="apa.html">APA</option>
+      <option value="anatomia.html">Anatomía Básica</option>
+    </select>
+    <button onclick="irARegistro()">Inscribirse</button>
+  </div>
+
+  <!-- Video -->
+  <div class="video-container">
+    <video controls>
+      <source src="videoP.mp4" type="video/mp4">
+      Tu navegador no soporta la etiqueta de video.
+    </video>
+  </div>
+
+<div class="container">
+  <div class="card">
+    <h3>MI HISTORIA</h3>
+    <img src="img7.jpg" alt="Imagen 1">
+    <br>
+    <p>Hola, mi nombre es Jefree Jahir García Sabillón y nací el 1 de septiembre de 2007. Desde pequeño siempre he sentido un profundo deseo de ayudar a los demás. No sé exactamente cuándo comenzó, pero hay algo en mí que se llena cada vez que puedo hacer algo bueno por alguien.</p>
+  </div>
+  <div class="card">
+    
+    <img src="img4.jpg" alt="Imagen 2">
+    <br>
+    <p>Ese deseo de servir me llevó a interesarme por los primeros auxilios. Aprender a responder en una emergencia, a cuidar, a salvar una vida… eso es algo que me inspira. No lo hago por reconocimiento, sino porque me importa la vida de las personas. Porque sé que, a veces, un pequeño acto puede marcar una gran diferencia.</p>
+  </div>
+  <div class="card">
+    
+    <img src="img10.jpg" alt="Imagen 3">
+    <br>
+    <p>Sueño con ser médico algún día. No solo por la carrera en sí, sino porque siento que es mi propósito: estar ahí para quienes más lo necesitan, dar consuelo, brindar esperanza, y hacer lo posible por sanar.
+
+Esta página es solo el comienzo de ese camino. Espero que lo que comparto aquí pueda ayudarte, así como a mí me ayuda cada paso que doy en este viaje.</p>
+  </div>
+</div>
+
+
+
+<div class="imagenes-informativas2">
+   <img src="img6.jpg" alt="Imagen 4">
+  <img src="img5.jpg" alt="Imagen 5">
+</div>
+  <!-- Redes Sociales -->
+  <div class="social-icons">
+    <a href="https://wa.me/1234567890" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://www.facebook.com/tu_pagina" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/tu_perfil" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.tiktok.com/@tu_usuario" class="tiktok" target="_blank"><i class="fab fa-tiktok"></i></a>
+  </div>
+
+  <!-- Script para selector -->
+  <script>
+    function irARegistro() {
+      const curso = document.getElementById("curso").value;
+      if (curso) {
+        window.location.href = `registro.html?curso=${encodeURIComponent(curso)}`;
+      } else {
+        alert("Por favor selecciona un curso.");
+      }
+    }
+  </script>
+
+</body>
+</html>
